@@ -20,6 +20,7 @@
     # smartindent = true;
     breakindent = true;
     cursorline = true;
+		cursercolumn = true;
 
     tabstop = 2;
     shiftwidth = 2;
@@ -117,5 +118,6 @@
 
 	extraConfigLua = # lua
     ''
+
     '';
 }
