@@ -28,7 +28,7 @@ You can try this configuration out without committing to installing it on your s
 the following command.
 
 ```nix
-nix run github:jakehamilton/neovim
+nix run github:nesth/neovim
 ```
 
 ## Install
@@ -38,7 +38,7 @@ nix run github:jakehamilton/neovim
 You can install this package imperatively with the following command.
 
 ```nix
-nix profile install github:jakehamilton/neovim
+nix profile install github:nesth/neovim
 ```
 
 ### Nix Configuration
@@ -91,7 +91,7 @@ you can add the `plusultra.neovim` package.
 
 {
 	environment.systemPackages = with pkgs; [
-		plusultra.neovim
+		OBlinux.neovim
 	];
 }
 ```
