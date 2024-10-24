@@ -121,7 +121,7 @@
 			HOME = os.getenv("HOME")
 			BACKUPDIR = HOME .. "/.vim/backup"
 
-			if vim.fn.isDirectory(BACKUPDIR) == 0 then
+			if vim.fn.isdirectory(BACKUPDIR) == 0 then
 				vim.fn.mkdir(BACKUPDIR, "p", "0o700")
 			end
 
