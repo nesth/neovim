@@ -1,6 +1,6 @@
 { helpers, ... }:
 {
-  extraConfigLuaPost = "" # lua
+  extraConfigLuaPost = ""; # lua
 
   colorschemes.onedark = {
     enable = true;
