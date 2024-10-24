@@ -17,7 +17,7 @@
 
 
   colorschemes.nord = {
-    enable = true;
+    enable = false;
     settings = {
       borders = true;
       contrast = false;
