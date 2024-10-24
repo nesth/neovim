@@ -32,10 +32,9 @@
         };
 
         mapping = {
-					"<Down>" =
-								helpers.mkRaw "cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
-					"<UP>" =
-								helpers.mkRaw "cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
+					"<Down>" = "cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
+					"<UP>" = "cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
+          "<Enter>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
           "<C-Space>" = "cmp.mapping.complete()";
           "<C-j>" = "cmp.mapping.scroll_docs(4)";
           "<C-k>" = "cmp.mapping.scroll_docs(-4)";
