@@ -8,6 +8,7 @@
   colorschemes.onedark = {
     enable = true;
     settings = {
+			style = "warmer";
       borders = true;
       contrast = false;
       disable_background = false;
