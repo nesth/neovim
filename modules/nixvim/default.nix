@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   vimAlias = true;
+  viAlias = true;
   withNodeJs = true;
   withRuby = true;
 
