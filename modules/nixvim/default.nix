@@ -119,7 +119,9 @@
 	extraConfigLua = # lua
     ''
 			HOME = os.getenv("HOME")
-			BACKUPDIR = HOME .. "/.vim/backup"
+			BACKUPDIR = HOME .. "/.vim/backup//"
+
+			vim.opt.backupdir = BACKUPDIR
 
 			if vim.fn.isdirectory(BACKUPDIR) == 0 then
 				vim.fn.mkdir(BACKUPDIR, "p", "0o700")
@@ -127,7 +129,7 @@
 
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				callback = function()
-					local extention = "~" .. vim.fn.strftime("~%Y-%m-%d_%H-%M-%S~")
+					local extention = "~" .. vim.fn.strftime("~%Y-%m-%d_%H-%M-%S")
 					vim.o.backupext = extension
 				end,
 			})
