@@ -28,11 +28,11 @@
     linebreak = true;
 
     number = true;
-    relativenumber = true;
+    relativenumber = false;
 
     signcolumn = "yes:1";
 
-    mouse = "";
+    mouse = "a";
 
     foldcolumn = "0";
     foldlevel = 99;
@@ -42,7 +42,7 @@
     updatetime = 50;
 
     swapfile = false;
-    backup = false;
+    backup = true;
     undofile = true;
 
     termguicolors = true;
@@ -114,4 +114,8 @@
       };
     }
   ];
+
+	extraConfigLua = # lua
+    ''
+    '';
 }
