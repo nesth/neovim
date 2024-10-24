@@ -33,9 +33,9 @@
 
         mapping = {
 					"<Down>" =
-								helpers.mkRaw "cmp.mapping.(cmp.mapping.select_next_item({ behavior = cmp.SelectBehabior.Select }), {'i'})";
+								helpers.mkRaw "cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehabior.Select }), {'i'})";
 					"<UP>" =
-								helpers.mkRaw "cmp.mapping.(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehabior.Select }), {'i'})";
+								helpers.mkRaw "cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehabior.Select }), {'i'})";
           "<C-Space>" = "cmp.mapping.complete()";
           "<C-j>" = "cmp.mapping.scroll_docs(4)";
           "<C-k>" = "cmp.mapping.scroll_docs(-4)";
