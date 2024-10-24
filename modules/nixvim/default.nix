@@ -9,6 +9,7 @@
 
   extraPlugins = with pkgs.vimPlugins; [
     vim-bufkill
+		vim-terraform
   ];
 
   globals = {
