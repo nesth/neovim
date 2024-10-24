@@ -1,5 +1,5 @@
 {
-  description = "Jake Hamilton's Neovim configuration";
+  description = "Nesth's Neovim configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -33,7 +33,7 @@
       src = ./.;
 
       snowfall = {
-        namespace = "plusultra";
+        namespace = "OBlinux";
       };
 
       channels-config.allowUnfree = true;

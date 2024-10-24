@@ -72,7 +72,7 @@
         };
       };
 
-      colors = with lib.plusultra.theme.nord; {
+      colors = with lib.OBlinux.theme.nord; {
         error = [ nord11 ];
         warning = [ nord12 ];
         info = [ nord15 ];
