@@ -195,7 +195,7 @@ in
       pyright.enable = true;
 
       rust-analyzer = {
-        enable = true;
+        enable = false;
         installCargo = true;
         installRustc = true;
       };
@@ -203,7 +203,7 @@ in
       sqls.enable = true;
       tailwindcss.enable = true;
       terraformls.enable = true;
-      tsserver.enable = true;
+      tsserver.enable = false;
       vuels.enable = true;
       yamlls.enable = true;
       zls.enable = true;
