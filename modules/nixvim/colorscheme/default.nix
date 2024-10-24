@@ -5,8 +5,8 @@
     '';
 
 
-  colorschemes.nord = {
-    enable = false;
+  colorschemes.onedark = {
+    enable = true;
     settings = {
       borders = true;
       contrast = false;
