@@ -20,7 +20,7 @@
     # smartindent = true;
     breakindent = true;
     cursorline = true;
-		cursercolumn = true;
+		cursorcolumn = true;
 
     tabstop = 2;
     shiftwidth = 2;
