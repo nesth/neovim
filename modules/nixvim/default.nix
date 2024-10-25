@@ -18,7 +18,7 @@
   };
 
   opts = {
-    # smartindent = true;
+    smartindent = true;
     breakindent = true;
     cursorline = true;
 		cursorcolumn = true;
