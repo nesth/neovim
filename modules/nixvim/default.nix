@@ -17,6 +17,14 @@
     maplocalleader = " ";
   };
 
+  autocmd = [
+    {
+      event = "FileType";
+			pattern = "yaml";
+			command = "expandtab";
+    }
+  ];
+
   opts = {
     smartindent = true;
     breakindent = true;
