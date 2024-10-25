@@ -1,6 +1,6 @@
 {
   plugins.copilot-chat = {
-    enable = true;
+    enable = false;
 
     settings = {
       context = "buffers";

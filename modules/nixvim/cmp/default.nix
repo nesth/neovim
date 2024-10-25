@@ -32,6 +32,7 @@
         };
 
         mapping = {
+					"<TAB>" = "cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
 					"<Down>" = "cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
 					"<UP>" = "cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
           "<Enter>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
@@ -73,7 +74,6 @@
 
         sources = [
           { name = "path"; }
-          { name = "copilot"; }
           { name = "nvim_lsp"; }
           { name = "luasnip"; }
           { name = "buffer"; }
