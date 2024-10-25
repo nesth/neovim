@@ -1,6 +1,6 @@
 { helpers, ... }:
 {
-	extraLuaConfig = # Lua
+	extraConfigLua =  # Lua
 		''
 			vim.opt.backup = true  -- Enable backup file creation
 			vim.opt.writebackup = true  -- Keep a backup file while writing
