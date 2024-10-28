@@ -161,7 +161,10 @@ in
       nginx-language-server.enable = true;
       nixd = {
         enable = true;
-
+        # HACK : https://github.com/nix-community/nixvim/issues/2390
+        extraOptions = {
+          offset_encoding = "utf-8";
+        };
         settings = {
           nixpkgs = {
             expr = "import <nixpkgs> {}";
