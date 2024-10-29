@@ -18,18 +18,18 @@ in
   ];
 
   extraConfigLua = ''
-		do
-			require("actions-preview").setup({
-				diff = {
-					ignore_whitespace = true,
-				},
-				highlight_command = {
-					require("actions-preview.highlight").diff_highlight()
-				},
-				backend = { "telescope" },
-			})
-		end
-	'';
+    		do
+    			require("actions-preview").setup({
+    				diff = {
+    					ignore_whitespace = true,
+    				},
+    				highlight_command = {
+    					require("actions-preview.highlight").diff_highlight()
+    				},
+    				backend = { "telescope" },
+    			})
+    		end
+    	'';
 
   extraConfigLuaPre = ''
     do
@@ -150,7 +150,6 @@ in
       eslint.enable = true;
       emmet-ls.enable = true;
       gleam.enable = true;
-      gdscript.enable = true;
       gopls.enable = true;
       graphql.enable = true;
       helm-ls.enable = true;
@@ -194,7 +193,6 @@ in
       nushell.enable = true;
       perlpls.enable = true;
       phpactor.enable = true;
-      prismals.enable = true;
       pyright.enable = true;
 
       rust-analyzer = {
@@ -207,7 +205,6 @@ in
       tailwindcss.enable = true;
       terraformls.enable = true;
       tsserver.enable = false;
-      vuels.enable = true;
       yamlls.enable = true;
       zls.enable = true;
     };
