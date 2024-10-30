@@ -1,308 +1,142 @@
-{ helpers, lib, ... }:
-let theme = lib.OBlinux.theme.nord;
-in {
+{ config, lib, ... }:
+let
+  cond.__raw = ''
+    function()
+      local buf_size_limit = 1024 * 1024 -- 1MB size limit
+      if vim.api.nvim_buf_get_offset(0, vim.api.nvim_buf_line_count(0)) > buf_size_limit then
+        return false
+      end
+
+      return true
+    end
+  '';
+in
+{
   plugins.lualine = {
     enable = true;
 
-
     settings = {
-      globalstatus = true;
+      options = {
+        disabled_filetypes = {
+          __unkeyed-1 = "startify";
+          __unkeyed-2 = "neo-tree";
+          winbar = [
+            "aerial"
+            "dap-repl"
+            "neotest-summary"
+          ];
+        };
 
-      disabled_filetypes = {
-        statusline = [ "dashboard" "NvimTree" "Trouble" ];
-        winbar = [ "dashboard" "NvimTree" "Trouble" ];
+        globalstatus = true;
       };
 
-      ignoreFocus = [ "dashboard" "NvimTree" "Trouble" ];
-
-      componentSeparators = {
-        left = "⋮";
-        right = "⋮";
-      };
-
-      sectionSeparators = {
-        left = "";
-        right = "";
-      };
-
-      theme = "onedark";
-
+      # +-------------------------------------------------+
+      # | A | B | C                             X | Y | Z |
+      # +-------------------------------------------------+
       sections = {
-        lualine_a = [{
-          name = helpers.mkRaw ''
-            function()
-              return ""
-            end
-          '';
-        }];
-        lualine_b = [
-            "branch"
-          {
-            icon = "";
-          }
+        lualine_a = [ "mode" ];
+        lualine_b = [ "branch" ];
+        lualine_c = [
+          "filename"
           "diff"
         ];
-        lualine_c = [ "" ];
+
         lualine_x = [
           "diagnostics"
+
+          # Show active language server
           {
-            extraConfig = { update_in_insert = true; };
+            __unkeyed.__raw = ''
+              function()
+                  local msg = ""
+                  local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+                  local clients = vim.lsp.get_active_clients()
+                  if next(clients) == nil then
+                      return msg
+                  end
+                  for _, client in ipairs(clients) do
+                      local filetypes = client.config.filetypes
+                      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                          return client.name
+                      end
+                  end
+                  return msg
+              end
+            '';
+            icon = "";
+            color.fg = "#ffffff";
+          }
+          "encoding"
+          "fileformat"
+          "filetype"
+        ];
+
+        lualine_y = [
+          {
+            __unkeyed = "aerial";
+            inherit cond;
+
+            # -- The separator to be used to separate symbols in status line.
+            sep = " ) ";
+
+            # -- The number of symbols to render top-down. In order to render only 'N' last
+            # -- symbols, negative numbers may be supplied. For instance, 'depth = -1' can
+            # -- be used in order to render only current symbol.
+            depth.__raw = "nil";
+
+            # -- When 'dense' mode is on, icons are not rendered near their symbols. Only
+            # -- a single icon that represents the kind of current symbol is rendered at
+            # -- the beginning of status line.
+            dense = false;
+
+            # -- The separator to be used to separate symbols in dense mode.
+            dense_sep = ".";
+
+            # -- Color the symbol icons.
+            colored = true;
           }
         ];
-        lualine_y = [ "" ];
+
         lualine_z = [
-          { name = "%l:%c"; }
           {
-            name = "fileformat";
-            extraConfig = { icon_only = true; };
+            __unkeyed = "location";
+            inherit cond;
           }
         ];
       };
 
-      tabline = {
-        lualine_a = [ "" ];
-        lualine_b = [ "" ];
-        lualine_c = [{
-          name = "windows";
-          extraConfig = {
+      tabline = lib.mkIf (!config.plugins.bufferline.enable) {
+        lualine_a = [
+          # NOTE: not high priority since i use bufferline now, but should fix left separator color
+          {
+            __unkeyed = "buffers";
             symbols = {
-              modified = "";
-              readonly = "";
-              unnamed = " ";
-              newfile = " ";
+              alternate_file = "";
             };
-
-            windows_color = {
-              active = {
-                fg = theme.nord6;
-                bg = theme.nord10;
-              };
-              inactive = {
-                fg = theme.nord6;
-                bg = theme.nord1;
-              };
-            };
-          };
-
-          separator = { right = ""; };
-        }];
-        lualine_x = [ "" ];
-        lualine_y = [ "" ];
-        lualine_z = [{
-          name = "tabs";
-
-          extraConfig = {
-            tabs_color = {
-              active = {
-                fg = theme.nord6;
-                bg = theme.nord10;
-              };
-              inactive = {
-                fg = theme.nord6;
-                bg = theme.nord1;
-              };
-            };
-          };
-          separator = { left = ""; };
-        }];
+          }
+        ];
+        lualine_z = [ "tabs" ];
       };
 
       winbar = {
-        lualine_a = [ "" ];
-        lualine_b = [ "" ];
         lualine_c = [
-          ""
           {
-            name = helpers.mkRaw ''
-              require('nvim-navic').get_location
-            '';
-            extraConfig = {
-              cond = helpers.mkRaw ''
-                require('nvim-navic').is_available
-              '';
-            };
+            __unkeyed = "navic";
+            inherit cond;
           }
         ];
-        lualine_x = [ "" ];
-        lualine_y = [ "" ];
-        lualine_z = [
+
+        # TODO: Need to dynamically hide/show component so navic takes precedence on smaller width
+        lualine_x = [
           {
-            name = "filetype";
-            extraConfig = {
-              colored = false;
-              icon_only = true;
-            };
-
-            color = {
-              fg = theme.nord0;
-              bg = theme.nord6;
-            };
-          }
-          {
-            name = "filename";
-            extraConfig = {
-              file_status = true;
-              shorting_target = 25;
-              path = 1;
-
-              symbols = {
-                modified = "";
-                readonly = "";
-                unnamed = " ";
-                newfile = " ";
-              };
-            };
-
-            separator = { left = ""; };
-
-            color = {
-              fg = theme.nord6;
-              bg = theme.nord10;
-            };
+            __unkeyed = "filename";
+            newfile_status = true;
+            path = 3;
+            # Shorten path names to fit navic component
+            shorting_target = 150;
           }
         ];
       };
-
-      inactiveWinbar = {
-        lualine_a = [ "" ];
-        lualine_b = [ "" ];
-        lualine_c = [ "" ];
-        lualine_x = [ "" ];
-        lualine_y = [ "" ];
-        lualine_z = [
-          {
-            name = "filetype";
-            extraConfig = {
-              colored = false;
-              icon_only = true;
-            };
-
-            color = {
-              fg = theme.nord6;
-              bg = theme.nord1;
-            };
-          }
-          {
-            name = "filename";
-            extraConfig = {
-              file_status = true;
-              path = 1;
-              shorting_target = 25;
-
-              symbols = {
-                modified = "";
-                readonly = "";
-                unnamed = " ";
-                newfile = " ";
-              };
-            };
-
-            separator = { left = ""; };
-
-            color = {
-              fg = theme.nord6;
-              bg = theme.nord1;
-            };
-          }
-        ];
-      };
-    };
-  };
-
-  highlight = with theme; {
-    StatusLine = { bg = nord0; };
-
-    lualine_b_windows_active = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_windows_inactive = {
-      fg = nord6;
-      bg = nord1;
-    };
-    lualine_b_diff_modified_terminal = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_modified_inactive = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_removed_terminal = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_removed_inactive = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_modified_replace = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_modified_command = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_removed_replace = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_removed_command = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_modified_visual = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_modified_normal = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_modified_insert = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_removed_visual = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_removed_normal = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_removed_insert = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_added_terminal = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_added_inactive = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_added_replace = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_added_command = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_added_visual = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_added_normal = {
-      fg = nord6;
-      bg = nord10;
-    };
-    lualine_b_diff_added_insert = {
-      fg = nord6;
-      bg = nord10;
     };
   };
 }

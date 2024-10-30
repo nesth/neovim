@@ -5,7 +5,7 @@
 
     modules = {
       align = {};
-      basic = {};
+      basics = {};
       bracketed = {};
       git = {};
       icons = {};
