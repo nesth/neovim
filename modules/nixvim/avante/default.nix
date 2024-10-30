@@ -1,14 +1,8 @@
 {
-  plugins = {
-    avante-nvim = {
-      enable = true;
+  plugins.avante = {
+    enable = true;
+    settings = {
       provider = "gemini";
-      auto_suggestion_provider = "gemini";
-      settings = {
-        gemini = {
-          enable = true;
-        };
-      };
     };
   };
 }

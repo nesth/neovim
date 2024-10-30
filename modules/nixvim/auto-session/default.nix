@@ -2,17 +2,19 @@
   plugins.auto-session = {
     enable = true;
 
-    bypassSessionSaveFileTypes = [
-      "dashboard"
-      "nvim-tree"
-    ];
+    settings = {
+      bypassSessionSaveFileTypes = [
+        "dashboard"
+        "nvim-tree"
+      ];
 
-    autoRestore.enabled = true;
-    autoSave.enabled = true;
-    autoSession = {
-      enabled = true;
-      createEnabled = true;
-      useGitBranch = true;
+      auto_restore = true;
+      auto_save = true;
+      auto_session = {
+        enabled = true;
+        createEnabled = true;
+        useGitBranch = true;
+      };
     };
   };
 
