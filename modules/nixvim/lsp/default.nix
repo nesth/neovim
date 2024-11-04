@@ -141,21 +141,14 @@ in
     };
 
     servers = {
-      astro.enable = true;
       clangd.enable = true;
       cmake.enable = true;
-      cssls.enable = true;
       dockerls.enable = true;
       docker_compose_language_service.enable = true;
-      eslint.enable = true;
-      emmet_ls.enable = true;
-      gleam.enable = true;
       gopls.enable = true;
       graphql.enable = true;
       helm_ls.enable = true;
-      html.enable = true;
       jsonls.enable = true;
-      ltex.enable = true;
       lua_ls.enable = true;
       nixd = {
         enable = true;
@@ -189,10 +182,8 @@ in
           };
         };
       };
-      nushell.enable = true;
       pyright.enable = true;
       sqls.enable = true;
-      tailwindcss.enable = true;
       terraformls.enable = true;
       yamlls = {
         enable = true;
@@ -208,7 +199,6 @@ in
           };
         };
       };
-      zls.enable = true;
     };
   };
 }
