@@ -6,7 +6,7 @@
 
   luaLoader.enable = true;
 
-  extraPlugins = with pkgs.vimPlugins; [ vim-bufkill vim-terraform ];
+  extraPlugins = with pkgs.vimPlugins; [ vim-bufkill ];
 
   globals = {
     mapleader = " ";

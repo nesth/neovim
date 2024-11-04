@@ -157,7 +157,6 @@ in
       jsonls.enable = true;
       ltex.enable = true;
       lua_ls.enable = true;
-      nginx_language_server.enable = true;
       nixd = {
         enable = true;
         # HACK : https://github.com/nix-community/nixvim/issues/2390
@@ -191,13 +190,24 @@ in
         };
       };
       nushell.enable = true;
-      perlpls.enable = true;
-      phpactor.enable = true;
       pyright.enable = true;
       sqls.enable = true;
       tailwindcss.enable = true;
       terraformls.enable = true;
-      yamlls.enable = true;
+      yamlls = {
+        enable = true;
+        extraOptions = {
+          settings = {
+            yaml = {
+              schemaStore.enable = true;
+              format = {
+                enable = true;
+              };
+              completion = true;
+            };
+          };
+        };
+      };
       zls.enable = true;
     };
   };
