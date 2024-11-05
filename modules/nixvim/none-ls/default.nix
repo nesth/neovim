@@ -6,6 +6,7 @@
       diagnostics = {
         deadnix.enable = true;
       };
+      formatting.hclfmt.enable = true;
     };
   };
 }
