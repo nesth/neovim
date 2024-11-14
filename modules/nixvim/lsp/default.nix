@@ -189,12 +189,17 @@ in
         enable = true;
         extraOptions = {
           settings = {
-            yaml = {
-              schemaStore.enable = true;
-              format = {
-                enable = true;
-              };
-              completion = true;
+            bracketSpacing = false;
+            completion = true;
+            editor.formatOnType = true;
+            hover = true;
+            validate = true;
+            schemaStore = {
+              enable = true;
+              url = "https://www.schemastore.org/api/json/catalog.json";
+            };
+            format = {
+              enable = true;
             };
           };
         };
