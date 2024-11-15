@@ -8,11 +8,6 @@
       };
       formatting = {
         hclfmt.enable = true;
-        prettier = {
-          enable = true;
-          disableTsServerFormatter = true;
-        };
-        yamlfmt.enable = true;
       };
     };
   };

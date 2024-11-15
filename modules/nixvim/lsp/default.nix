@@ -147,7 +147,10 @@ in
       docker_compose_language_service.enable = true;
       gopls.enable = true;
       graphql.enable = true;
-      helm_ls.enable = true;
+      helm_ls = {
+        enable = true;
+        filetypes = [ "helm" ];
+      };
       jsonls.enable = true;
       lua_ls.enable = true;
       nixd = {
@@ -196,6 +199,9 @@ in
             validate = true;
             schemaStore = {
               enable = true;
+              schemas = {
+                kubernetes = "'*.yaml";
+              };
               url = "https://www.schemastore.org/api/json/catalog.json";
             };
             format = {
