@@ -1,5 +1,5 @@
 {
   plugins.conform-nvim = {
-    enable = false;
+    enable = true;
   };
 }
