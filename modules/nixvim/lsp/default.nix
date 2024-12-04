@@ -197,11 +197,11 @@ in
             editor.formatOnType = true;
             hover = true;
             validate = true;
+            schemas = {
+              kubernetes = "*.yaml";
+            };
             schemaStore = {
               enable = true;
-              schemas = {
-                kubernetes = "'*.yaml";
-              };
               url = "https://www.schemastore.org/api/json/catalog.json";
             };
             format = {
