@@ -190,24 +190,26 @@ in
       terraformls.enable = true;
       yamlls = {
         enable = true;
-        extraOptions = {
-          settings = {
-            bracketSpacing = false;
-            completion = true;
-            editor.formatOnType = true;
-            hover = true;
-            validate = true;
-            schemas = {
-              kubernetes = "*.yaml";
-            };
-            schemaStore = {
-              enable = true;
-              url = "https://www.schemastore.org/api/json/catalog.json";
-            };
-            format = {
-              enable = true;
-            };
+        settings = {
+          bracketSpacing = false;
+          completion = true;
+          editor.formatOnType = true;
+          format.enable = true;
+          hover = true;
+          validate = true;
+          schemas = {
+            kubernetes = "*.yaml";
+            "http://json.schemastore.org/github-workflow" = ".github/workflows/*";
+            "http://json.schemastore.org/github-action" = ".github/action.{yml,yaml}";
+            "http://json.schemastore.org/chart" = "Chart.{yml,yaml}";
+            "https://json.schemastore.org/dependabot-v2" = ".github/dependabot.{yml,yaml}";
           };
+          schemaStore = {
+            enable = true;
+            url = "https://www.schemastore.org/api/json/catalog.json";
+          };
+          schemaDownload.enable = true;
+          trace.server = "debug";
         };
       };
     };
